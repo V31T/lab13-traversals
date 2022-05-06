@@ -207,7 +207,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			postHelper.push(root);
 			while(!postHelper.isEmpty()) {
 				//how should post and postHelper be updated?
+				BSTNode<T> current = postHelper.pop();
 				
+                if (current.leftChild != null) {
+                    postHelper.add(current.leftChild);
+                }
+                if (current.rightChild != null) {
+                    postHelper.add(current.rightChild);
+                }
+                post.add(current);
+            	}
 			}
 			
 			while(!post.isEmpty()) {
@@ -216,7 +225,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			}
 		}
 
-	}
 	
 	public String toString() {
 		return recursiveToString(root, "");		
